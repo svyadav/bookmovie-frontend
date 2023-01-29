@@ -20,7 +20,7 @@ const Login=()=>{
        if(res.data.statusCode===200){
         setToggle(false)
         sessionStorage.setItem("token",res.data.token)
-        navigate("/theatre")
+        navigate("/movies")
        }
        else{
         setToggle(false)

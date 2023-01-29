@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BiSquareRounded } from "react-icons/bi";
+import env from "../environment";
+import axios from "axios";
 let selectedSeats = [];
 const Theatre = () => {
+
   const navigate = useNavigate();
   const [row1, setRow1] = useState([
     { empty: true, selected: false },
@@ -133,12 +136,15 @@ const Theatre = () => {
     { empty: true, selected: false },
   ]);
 
+
+
+
   const onSelectRow1 = (index) => {
     let tempRow = [];
     tempRow = row1;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -159,8 +165,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row2;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -181,8 +187,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row3;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -203,8 +209,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row4;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -225,8 +231,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row5;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -246,8 +252,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row6;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -268,8 +274,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row7;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -290,8 +296,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row8;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -312,8 +318,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row9;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -334,8 +340,8 @@ const Theatre = () => {
     let tempRow = [];
     tempRow = row10;
     tempRow.map((item, ind) => {
-      if (index == ind) {
-        if (item.selected == true) {
+      if (index === ind) {
+        if (item.selected === true) {
           item.selected = false;
           item.empty = true;
         } else {
@@ -432,13 +438,13 @@ const Theatre = () => {
         </div>
 
         <div className="movie-container">
-          <label>Select a movie</label>
+          {/* <label>Select a movie</label>
           <select id="movie">
             <option value="10">Dabbang ($10)</option>
             <option value="20">Chak de India ($20)</option>
             <option value="25">Bhahubali ($25)</option>
             <option value="15">Raone ($15)</option>
-          </select>
+          </select> */}
         </div>
         <ul className="showcase">
           <li>

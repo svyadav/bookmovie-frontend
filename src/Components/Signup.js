@@ -16,8 +16,14 @@ const Signup = () => {
 
   const handleSignup = async () => {
     let res= await axios.post(`${env.apiurl}/users/signup`, member)
-    alert("Signup successful");
-    navigate("/login")
+    
+    if(res.data.statusCode===200){
+      alert("Signup successful");
+      navigate("/login")
+    }
+    else{
+      alert(res.data.message)
+    }
   };
   const handleChange = (e) => {
     setMember({ ...member, [e.target.name]: e.target.value });
@@ -25,7 +31,7 @@ const Signup = () => {
 
   return (
     <>
-      <div className="login-wrapper">
+      <div className="login-wrapper"> 
         <div className="login">
           <h1>Signup</h1>
           <Form>

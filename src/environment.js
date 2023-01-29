@@ -1,5 +1,5 @@
 let env={
-    apiurl:"https://fe-be-connect.herokuapp.com"
+    apiurl:"https://bookmovie-backend.onrender.com"
 }
 
 export default env

@@ -1,7 +1,9 @@
 import React from "react"
 import { Form,FormGroup,Label,Input,Button} from "reactstrap"
 import { FaInstagram,FaLinkedinIn,FaGithub,FaFacebook} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const Contact=()=>{
+  const navigate=useNavigate()
     return (
         <>
         <div className="contactform">
@@ -61,7 +63,7 @@ const Contact=()=>{
       Check me out
     </Label>
   </FormGroup>
-  <Button color='primary'>
+  <Button color='primary' onClick={()=>navigate('/login')}>
     Submit
   </Button>
   </Form>
