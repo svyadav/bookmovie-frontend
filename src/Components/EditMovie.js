@@ -35,6 +35,7 @@ const EditMovie = () => {
           }
           else{
             alert(response.message)
+            navigate("/movies")
           }
         })
 
