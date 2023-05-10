@@ -818,12 +818,12 @@ const Theatre = () => {
           <div>
             <p className="text">
               you have selected <span>{getAllSeats()}</span> seats for a price
-              of $ <span id="total"> 0</span>
+              of $ <span id="total">{getAllSeats()*100}</span>
             </p>
           </div>
           <div className="bookbtn">
             <Button variant="success" onClick={() => saveSeats()}>
-              Book Now
+              Pay Now ${getAllSeats()*100}
             </Button>
           </div>
         </div>
