@@ -6,11 +6,13 @@ import Card from "react-bootstrap/Card";
 import { useNavigate, useParams } from "react-router-dom";
 import env from "../environment";
 import Header from "./Header";
+import jwt_decode from "jwt-decode";
 
 const Movies = () => {
   const [movie, setMovie] = useState([]);
+  const [change, setChange] = useState(false);
   const navigate = useNavigate();
-  const {id} =useParams()
+  const { id } = useParams();
   const loadMovie = async () => {
     let res = await axios.get(`${env.apiurl}/movie`);
     if (res.data.statusCode === 200) {
@@ -19,8 +21,6 @@ const Movies = () => {
       alert(res.data.message);
     }
   };
-
-
 
   const handleDelete = async (id) => {
     let token = sessionStorage.getItem("token");
@@ -38,9 +38,23 @@ const Movies = () => {
     }
   };
 
+  const getAdminButtons = async () => {
+    let token = sessionStorage.getItem("token");
+    let decoded = jwt_decode(token);
+    // console.log(decoded.role)
+    if (decoded.role === "admin") {
+      setChange(true);
+    }
+  };
+
   useEffect(() => {
     loadMovie();
   }, []);
+
+  useEffect(() => {
+    getAdminButtons();
+  }, []);
+
   return (
     <>
       <Header />
@@ -51,7 +65,11 @@ const Movies = () => {
               <h1>SELECT YOUR FAVOURITE MOVIE</h1>
             </div>
             <div>
-              <Button variant="success" className="admin-btn" onClick={() => navigate("/addmovie")}>
+              <Button
+                variant="success"
+                className="admin-btn"
+                onClick={() => navigate("/addmovie")}
+              >
                 Add a new Movie
               </Button>
               <Button variant="primary" onClick={loadMovie}>
@@ -79,23 +97,29 @@ const Movies = () => {
                       <Button
                         variant="primary"
                         onClick={() => navigate("/theatre/" + e._id)}
-                       
                       >
                         Book
                       </Button>
-                      <Button
-                        variant="success"
-                        onClick={() => navigate("/editmovie/" + e._id)}
-                      >
-                        Edit
-                      </Button>
 
-                      <Button
-                        variant="danger"
-                        onClick={() => handleDelete(e._id)}
-                      >
-                        Delete
-                      </Button>
+                      {change ? (
+                        <div>
+                          <Button
+                            variant="success"
+                            onClick={() => navigate("/editmovie/" + e._id)}
+                          >
+                            Edit
+                          </Button>
+
+                          <Button
+                            variant="danger"
+                            onClick={() => handleDelete(e._id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </Card.Body>
                 </Card>
